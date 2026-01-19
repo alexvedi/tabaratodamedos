@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plantas petroleras de Venezuela 1976</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #mapid {
+      width: 100%;
+      height: 350px;
+    }
+    .leaflet-popup-content {
+      font-size: 14px;
+      line-height: 1.2;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mapid"></div>
+
+  <script>
+    var bounds = L.latLngBounds(
+      [0.6, -74.5],
+      [16, -59.7]
+    );
+
+    var map = L.map('mapid', {
+      center: [7.5, -65],
+      zoom: 6,
+      maxBounds: bounds,
+      maxBoundsViscosity: 1.0,
+      minZoom: 5,
+      maxZoom: 12
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 13,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var plantas = [
+      { nombre: "Amoven", ubicacion: [9.680, -68.000], antes: "Amoco", despues: "Amoven (PDVSA)" },
+      { nombre: "Bariven", ubicacion: [9.440, -68.003], antes: "Sinclair/ARCO", despues: "Bariven (PDVSA)" },
+      { nombre: "Boscanven", ubicacion: [9.522, -70.578], antes: "Chevron", despues: "Boscanven (PDVSA)" },
+      { nombre: "Deltaven", ubicacion: [9.355, -69.644], antes: "Texaco", despues: "Deltaven (PDVSA)" },
+      { nombre: "Guariven", ubicacion: [10.089, -67.813], antes: "Petrolera Las Mercedes", despues: "Guariven (PDVSA)" },
+      { nombre: "Lagoven", ubicacion: [11.418, -69.434], antes: "Creole Petroleum (Exxon)", despues: "Lagoven (PDVSA)" },
+      { nombre: "Llanoven", ubicacion: [10.285, -67.441], antes: "Mobil", despues: "Llanoven (PDVSA)" },
+      { nombre: "Maraven", ubicacion: [9.916, -71.442], antes: "Shell", despues: "Maraven (PDVSA)" },
+      { nombre: "Meneven", ubicacion: [9.813, -71.237], antes: "Mene Grande Oil (Gulf Oil)", despues: "Meneven (PDVSA)" },
+      { nombre: "Palmaven", ubicacion: [9.645, -66.931], antes: "Sun Oil (Sunoco)", despues: "Palmaven (PDVSA)" },
+      { nombre: "Roqueven", ubicacion: [9.978, -67.232], antes: "Phillips (ConocoPhillips)", despues: "Roqueven (PDVSA)" },
+      { nombre: "Taloven", ubicacion: [9.551, -67.026], antes: "Talon Petroleum", despues: "Taloven (PDVSA)" },
+      { nombre: "Vistaven", ubicacion: [9.803, -66.286], antes: "Petrolera Mito Juan", despues: "Vistaven (PDVSA)" }
+    ];
+
+    var markers = [];
+
+    plantas.forEach(function(planta) {
+      var marker = L.marker(planta.ubicacion)
+        .bindPopup(
+          "<b>" + planta.nombre + "</b><br/>" +
+          "<b>Antes (empresa internacional):</b> " + planta.antes + "<br/>" +
+          "<b>Tras nacionalización:</b> " + planta.despues
+        )
+        .addTo(map);
+
+      markers.push(marker);
+    });
+
+    // Centrar automáticamente todos los marcadores
+    var group = L.featureGroup(markers);
+    map.fitBounds(group.getBounds(), {
+      padding: [20, 20]
+    });
+
+    map.setMaxBounds(bounds);
+  </script>
+</body>
+</html>
