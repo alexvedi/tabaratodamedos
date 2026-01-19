@@ -1,4 +1,4 @@
-<model-viewer src="billete-capitulo-5-04.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" camera-orbit="30deg 90deg 0.9916m" field-of-view="22.98deg">
+<model-viewer src="billete-capitulo-5-04.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" camera-orbit="0deg 90deg 0.9638m" field-of-view="22.98deg" exposure="0.75">
     <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
     </div>
