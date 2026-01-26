@@ -1,0 +1,38 @@
+html,
+body {
+  height: 900px;
+}
+
+body {
+  min-height: 900px;
+  /* mantiene el comportamiento en navegadores normales */
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.center-bottom {
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  /* Opcional: ajustar tamaño y evitar que sobresalga */
+  max-width: 90%;
+  height: auto;
+}
+
+.texto {
+  font-size: 24px;
+  line-height: 29px;
+  font-style: italic;
+  color: #b78029;
+  z-index: 0;
+  margin-top: 60px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 900px;
+  width: 100%;
+  text-align: center;
+}
